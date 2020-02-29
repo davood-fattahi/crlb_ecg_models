@@ -3,9 +3,9 @@ function [P, AF] =ecgpolyfit(ecg,hr,fs,PolyOrder,varargin)
 % 
 % 
 % [P, AF] =ecgpolyfit(ecg,hr,fs,PolyOrder)
-% 
+%
 % [P, AF] =ecgpolyfit(ecg,hr,fs,PolyOrder,Pcs)
-% Pcs = {'P,Q,R,S,T','P,Q,R,S,T,U','P,QRS,T','P,QRS,T,U'}
+%     Pcs = {'P,Q,R,S,T','P,Q,R,S,T,U','P,QRS,T','P,QRS,T,U'}
 % 
 % [P, AF] =ecgpolyfit(ecg,hr,fs,PolyOrder,Pcs,FAM)
 % 

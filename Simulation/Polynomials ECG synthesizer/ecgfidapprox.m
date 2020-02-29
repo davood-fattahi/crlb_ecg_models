@@ -1,21 +1,28 @@
-function fp =ecgfidapprox(ecg,fs,hr,varargin)
+function afp =ecgfidapprox(ecg,fs,hr,varargin)
 
 % This function appriximately finds peaks and borders of the input ecg beat
 % waves.   
 
-% fp =EcgSegmentorApprox(ecg,fs,hr,ns)
+% afp =EcgSegmentorApprox(ecg,fs,hr,sm)
 
 % Inputs:
 % ecg: one ecg beat,
 % fs: sampleing frequency
 % hr: approximate heart rate
+% sm: segmenting method, specified as 'separate', 'overlapped' and 'widest'.
+% 'separate': the segments will have separate borders.
+% 'overlapped': the segments are a little overlapped.
+% 'widest': the segments are widely overlapped.
+
 
 % Outputs:
-% fp: the vector of approximated fiducal points
+% afp: the vector of approximated fiducal points
 
 
-% developer: Davood Fattahi
-% 1/12/2020
+% Davood Fattahi, 1/12/2020
+% fattahi.d@gmail.com
+
+
 
 
 ecg=ecg(:);
@@ -66,7 +73,7 @@ elseif isequal(varargin{1},'widest')
     Us=Te;
     Ue=size(ecg,1);    
 end
-fp=[Ps Qs Rs Ss Ts Us ; P Q R S T U; Pe Qe Re Se Te Ue];
+afp=[Ps Qs Rs Ss Ts Us ; P Q R S T U; Pe Qe Re Se Te Ue];
 
 
 end
