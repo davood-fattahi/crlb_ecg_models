@@ -11,7 +11,7 @@ s=s+.1*rand(size(s));
 
 subplot(311)
 plot(s)
-po=10;
+po=2;
 vc=[];
 for j=0:po
     vc(j+1)=nchoosek(po,j);
