@@ -1,5 +1,6 @@
 function [P, WS, PO, NN]=polyfitAMW(t,s,tr,maxi,varargin)
 
+% 
 % [P, S]=Apolyfit(t,s,eps,'PolyOrder',po,wsi}
 % [P, S]=Apolyfit(t,s,eps,'WindowSize',ws,poi}
 
