@@ -13,4 +13,6 @@ ecg=ecg(1:500000);
 figure
 plot(ecgM);
 
-k=ecgknots(ecgM,3,0);
+k=ecgknots(ecgM,3,1);
+hold on
+plot(k,ecgM(k),'*')
