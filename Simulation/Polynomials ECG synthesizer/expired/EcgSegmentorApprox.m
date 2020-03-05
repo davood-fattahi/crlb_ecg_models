@@ -1,7 +1,7 @@
 function fp =EcgSegmentorApprox(ecg,fs,hr,varargin)
 
-% This function appriximately segments the input ECG beat according to the R peak
-% position.
+% This function appriximately segments the input ECG beat (common 
+% morphology of lead II) according to the R peak position.
 
 % fp =EcgSegmentorApprox(ecg,fs,hr,ns)
 

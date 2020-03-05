@@ -1,4 +1,4 @@
-function k=findknots(ecg,depth,tr)
+function k=findknots(ecg,depth,varargin)
 % 
 % Syntax:
 % k=ecgknots(ecg,depth,tr)
@@ -20,7 +20,7 @@ function k=findknots(ecg,depth,tr)
 %       the two neighbor knots. The default value is 1.
 % 
 % Output:
-% k: The vector of found knots
+% k: Vector of the found knots
 % 
 % 
 % Davood Fattahi, 10/02/2020;
@@ -28,9 +28,15 @@ function k=findknots(ecg,depth,tr)
 % 
 % 
 
+if nargin==3
+    tr=varargin{1};
+elseif nargin==2
+    tr=0;
+else
+    error('wrong nuber of inputs')
+end
 
-
-
+ecg=ecg(:)';
 k=nan(2^depth,2);
 kk=k;
 k(1,1)=1;
@@ -41,7 +47,7 @@ for i=1:2^(j-1)
     s=ecg(tt);
     line=s(1)+(1:size(s(:),1)).*((s(end)-s(1))/size(s(:),1));
     [M,I]=max(abs(s-line));
-    if M>tr*(var(s))
+    if M>tr*(std(s))
     kk(2*i-1,1)=k(i,1);
     kk(2*i-1,2)=tt(I);
     kk(2*i,1)=tt(I);

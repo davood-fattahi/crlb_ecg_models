@@ -1,9 +1,9 @@
 clear; %close all; clc;
 
 %%%% mean parameters:
-a=[2.2 -8 30  -4   2 ]; % Gaussian Amplitudes
-b=[0.08 0.03  0.02  0.03  0.14]*pi; % Gaussian width
-c=[-pi/3 -pi/12 0 pi/15 5*pi/6]+3*pi/4; % Gaussian centers
+a=[2 -3 30  -4   2.5 ]; % Gaussian Amplitudes
+b=[0.08 0.03  0.02  0.03  0.1]*pi; % Gaussian width
+c=[-pi/2 -pi/12 0 pi/15 4*pi/6]+3*pi/4; % Gaussian centers
 paramean=  [a  b  c]; % mean of parameters
 
 %%%%% variance of parameters:
@@ -29,3 +29,5 @@ plot(ECG(2,:))
 hold on
 plot(ECG(3,:))
 legend('phase','ECG','angular velocity')
+
+save('..\ECG.mat','ECG');

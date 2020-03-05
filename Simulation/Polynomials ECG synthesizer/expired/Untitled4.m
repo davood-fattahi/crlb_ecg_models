@@ -5,6 +5,8 @@ clc
 
 range0=[1:300];
 
+
+%%% range normalization
 beta=2/(300-1);
 gamma=-1;
 range1=range0.*beta+gamma;

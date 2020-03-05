@@ -8,7 +8,7 @@ function afp =ecgfidapprox(ecg,fs,hr,varargin)
 % Inputs:
 % ecg: one ecg beat,
 % fs: sampleing frequency
-% hr: approximate heart rate
+% hr: approximated heart rate in Hz
 % sm: segmenting method, specified as 'separate', 'overlapped' and 'widest'.
 % 'separate': the segments will have separate borders.
 % 'overlapped': the segments are a little overlapped.
