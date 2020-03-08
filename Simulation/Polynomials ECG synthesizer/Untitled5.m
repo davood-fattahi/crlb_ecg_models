@@ -23,7 +23,13 @@ t=1:size(ecgM2(:),1);
 figure
 hold on
 plot(t,ecgM2)
-[p,pcs]=ppolyfit(t,ecgM2,3,50,0);
+[p,pcs, pct]=ppolyfit(t,ecgM2,3,50,0);
+
+[S, SS]=ppolyval(p,pct,1);
+figure
+plot(S)
+
+
 
 SS=nan(size(pcs,1),size(ecgM2,2));
 for i=1:size(pcs,1)

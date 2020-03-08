@@ -1,11 +1,42 @@
-function [P, pcs] =ppolyfit(t,x,PolyOrder,varargin)
+function [P, pcs, pct] =ppolyfit(t,x,PolyOrder,varargin)
 
+% Description:
 % piecewise polynomials fitter
 % 
 % Syntax:
-% P=ppolyfit(t,x,PolyOrder);
-% P=ppolyfit(t,x,PolyOrder,pcs);
-% P=ppolyfit(t,x,PolyOrder,ws,nvrlp);
+% [P, pcs, pct]=ppolyfit(t,x,PolyOrder);
+% fit polynomials on each piece of the function x having values at time 
+% vector t. Each piece's size is 20 percent of x length in sample, with 50
+% percent overlap. PolyOrder determines the order of polynomials.
+%  
+% [P, pcs, pct]=ppolyfit(t,x,PolyOrder,pcs);
+% fit polynomials on each piece of the function x having values at time 
+% vector of t. The pieces  start and end sample indexes are given by pcs
+% vector.
+% 
+% [P, pcs, pct]=ppolyfit(t,x,PolyOrder,ws,nvrlp);
+% fit polynomials on each piece of the function x having values at time 
+% vector t. Each piece's size is given by ws in sample, with overlap 
+% samples determined in nvrlp.
+%
+% Input: 
+% t: the vestor of time
+% x: the values vector
+% PolyOrder: order of polynomials, can be a scalar or a vector with the 
+% size equal to number of the pieces.
+% pcs: a N by 2 vector in which N is the number of pieces and each row
+% contains the start and end sample indexes of each piece.
+% nvrlp: overlap size of pieces. 
+% ext: extention size in sample, a scalar.
+% 
+% Outputs:
+% P: the polynoials coefficients in cell format.
+% pcs: the pieces start and end samples' indexes.
+% pct: the pieces start and end time.
+% 
+%
+% Davood Fattahi, 01/03/2020
+% fattahi.d@gmail.com
 
 
 xsz=size(x(:),1); % signal size in samples
@@ -48,7 +79,7 @@ for i=1:np
     pci=pcs(i,1):pcs(i,2);
 
     xx=x(pci); xx=xx(:);
-    tt=t(pci); tt=tt(:);
+    tt=t(pci); tt=tt(:); pct(i,:)=[tt(1) tt(end)];
     
     %%% range normalization
     beta=2/(tt(end)-tt(1));
