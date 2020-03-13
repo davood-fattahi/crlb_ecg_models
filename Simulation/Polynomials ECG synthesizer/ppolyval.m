@@ -25,11 +25,12 @@ function [S, SS]=ppolyval(P,pct,varargin)
 
 if nargin==3
     sr=varargin{1};
+    ssz=ceil((pct(end)-pct(1)).*sr);    
+elseif nargin==2
+    ssz=size(unique(pct(:)),1);
 end
-
-ssz=pct(end)-pct(1);    
-pci=0;
 SS=nan(size(pct,1),ssz);
+
 for i=1:size(pct,1)
     if size(pct,2)==2
         tt=pct(i,1):1/sr:pct(i,end); tt=tt(:);
@@ -38,7 +39,7 @@ for i=1:size(pct,1)
     else
         error 'wrong dimension of pcs!'
     end
-    pci=floor(pct(i,1)*sr):floor(pct(i,1)*sr)+size(tt,1)-1;
+    pci=floor(pct(i,1)*sr)+1:floor(pct(i,1)*sr)+size(tt,1);
     S=polyval(P{i,1},tt);
     SS(i,pci)=S;
 end
