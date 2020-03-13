@@ -33,13 +33,12 @@ SS=nan(size(pct,1),ssz);
 for i=1:size(pct,1)
     if size(pct,2)==2
         tt=pct(i,1):1/sr:pct(i,end); tt=tt(:);
-        pci=pci(end)+1:pci(end)+size(tt,1);
     elseif size(pct,2)>2
         tt=pct(i,:); tt=tt(:);
-        pci=pci(end)+1:pci(end)+size(tt,1);
     else
-        error 'wrong dimension od pcs!'
+        error 'wrong dimension of pcs!'
     end
+    pci=floor(pct(i,1)*sr):floor(pct(i,1)*sr)+size(tt,1)-1;
     S=polyval(P{i,1},tt);
     SS(i,pci)=S;
 end

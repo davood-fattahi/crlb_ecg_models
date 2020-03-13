@@ -24,7 +24,7 @@ function [P, pcs, pct] =ppolyfit(t,x,PolyOrder,varargin)
 % x: the values vector
 % PolyOrder: order of polynomials, can be a scalar or a vector with the 
 % size equal to number of the pieces.
-% pcs: a N by 2 vector in which N is the number of pieces and each row
+% pcs: an N by 2 matrix in which N is the number of pieces and each row
 % contains the start and end sample indexes of each piece.
 % nvrlp: overlap size of pieces. 
 % ext: extention size in sample, a scalar.
@@ -96,7 +96,8 @@ for i=1:np
     
     %%% range denormalization
     coefs=flip(p);
-    for j=0:PolyOrder
+    C=zeros(PolyOrder(i)+1);
+    for j=0:PolyOrder(i)
         for k=0:j
             C(j+1,k+1)=nchoosek(j,k)*(beta^k)*(gamma^(j-k))*coefs(j+1);
         end

@@ -3,7 +3,7 @@ function afp =ecgfidapprox(ecg,fs,hr,varargin)
 % This function appriximately finds peaks and borders of the input ecg beat
 % waves.   
 
-% afp =EcgSegmentorApprox(ecg,fs,hr,sm)
+% afp =Ecgfidapprox(ecg,fs,hr,sm)
 
 % Inputs:
 % ecg: one ecg beat,
@@ -61,13 +61,13 @@ elseif isequal(varargin{1},'overlapped')
     Ue=size(ecg,1);
 elseif isequal(varargin{1},'widest')
     Ps=1;
-    Pe=P+floor(.1*(fs/hr));
-    Qs=Q-floor(.5*(Q-P));
+    Pe=P+floor(.5*(Q-P));
+    Qs=Pe;
     Qe=Q+floor(.5*(R-Q));
-    Rs=Q;
+    Rs=Qe;
     Ss=S-floor(.5*(S-R));
-    Re=S;
-    Se=S+floor(.3*(T-S));
+    Re=Ss;
+    Se=S+floor(.5*(T-S));
     Ts=Se;
     Te=T+floor(.17*(fs/hr));
     Us=Te;
