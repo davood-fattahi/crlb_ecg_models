@@ -1,17 +1,18 @@
-function ECG=ecgsynthppoly(L,HRmean,HRdev,pct,pmean,pdev,fs,noisdev)
+function ECG=ecgsynthspline(L,HRmean,HRdev,p,pdev,fs,noisdev)
 
-
+pmean=p.coefs;
+b=p.breaks;
 
 
 %%
     
 %%% scaling to [0 2*pi]
-beta=range(pct,'all')./(2*pi);
-gamma=pct(1);
-pcphase=pct./beta+gamma;
+beta=range(b,'all')./(2*pi);
+gamma=b(1);
+bphase=b./beta+gamma;
 
-for i=1:size(pct,1)
-PolyOrder=size(pmean{i,1},2)-1;    
+for i=1:size(b,1)
+p.orde=size(pmean{i,1},2)-1;    
 coefs=flip(pmean{i,1});
 C=zeros(PolyOrder+1);
 for j=0:PolyOrder
@@ -39,11 +40,11 @@ for i=2:L
         PP=deviate(P,pdev);
     end
     
-    k=(sum(((pcphase-phase(i))>=0),2)==1);
+    k=(sum(((bphase-phase(i))>=0),2)==1);
     p=mean(cell2mat(PP(k,1)),1);
 
     ECG(1,i)=phase(i);
-    ECG(2,i)=polyval(p,phase(i))+(noisdev(2).*randn(1));
+    ECG(2,i)=ppval(p,phase(i))+(noisdev(2).*randn(1));
     ECG(3,i)=omega;
 end
 
