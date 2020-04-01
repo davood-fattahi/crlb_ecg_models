@@ -39,7 +39,7 @@ for i=1:size(pct,1)
     else
         error 'wrong dimension of pcs!'
     end
-    pci=floor(pct(i,1)*sr)+1:floor(pct(i,1)*sr)+size(tt,1);
+    pci=(floor(pct(i,1)*sr)+1:floor(pct(i,1)*sr)+size(tt,1))-floor(pct(1,1)*sr);
     S=polyval(P{i,1},tt);
     SS(i,pci)=S;
 end

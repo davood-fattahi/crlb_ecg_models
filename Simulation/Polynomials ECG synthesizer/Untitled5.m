@@ -19,7 +19,7 @@ subplot(311)
 plot(ecg)
 
 [ecgM, rrM]=ecgmean(ecg,fs);
-t=(0:1:size(ecgM(:),1)-1)./fs;
+t=(1000:1:size(ecgM(:),1)+999)./fs;
 subplot(312)
 plot(t,ecgM)
 
@@ -31,8 +31,8 @@ plot(t,S)
 subplot(313)
 hold on
 plot(t,ecgM)
-[p,pcs, pct]=ppolyfit2(t,ecgM,5,100,0,0);
-p=deviate(p,.8);
+[p,pcs, pct]=ppolyfit2(t,ecgM,5,50,0,0);
+% p=deviate(p,.8);
 [S, SS]=ppolyval(p,pct,fs);
 plot(t,S)
 

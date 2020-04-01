@@ -35,7 +35,7 @@ Y=ppval(pp,t);
 hold on
 plot(t,Y)
 
-L=8000; HRmean=1.2; HRdev=0; p=pp; pdev=0.1; noisdev=[0 0 0];
+L=5000; HRmean=1.2; HRdev=0; p=pp; pdev=[0.1 0.01 0]; noisdev=[0 0 0];
 ECG=ecgsynthspline(L,HRmean,HRdev,p,pdev,fs,noisdev);
 figure
 plot(ECG(2,:));

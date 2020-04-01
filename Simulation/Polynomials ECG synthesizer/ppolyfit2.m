@@ -99,7 +99,7 @@ for i=1:np
     
     %%% range normalization
     beta=2/(tt(end)-tt(1));
-    gamma=-1;
+    gamma=-(2*tt(1)/t(end))-1;
     ttt=tt.*beta+gamma;
     
     %%% amplitude normalization
